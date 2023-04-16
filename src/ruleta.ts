@@ -1,3 +1,4 @@
+import { Player } from "./player";
 import { PlayGame } from "./playgame";
 
 export class Ruleta extends PlayGame{
@@ -15,6 +16,10 @@ export class Ruleta extends PlayGame{
         }
     }
     play() {
+        console.log(
+            'Bienvenido al juego de la Ruleta!'
+            
+        );
         
     }
     getCash() {

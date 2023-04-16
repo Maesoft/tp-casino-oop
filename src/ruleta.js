@@ -35,6 +35,7 @@ var Ruleta = /** @class */ (function (_super) {
         return _this;
     }
     Ruleta.prototype.play = function () {
+        console.log('Bienvenido al juego de la Ruleta!');
     };
     Ruleta.prototype.getCash = function () {
     };

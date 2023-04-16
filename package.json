@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Maesoft/tp-casino-oop/issues"
   },
-  "homepage": "https://github.com/Maesoft/tp-casino-oop#readme"
+  "homepage": "https://github.com/Maesoft/tp-casino-oop#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/readline-sync": "^1.4.4"
+  }
 }

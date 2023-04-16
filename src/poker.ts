@@ -1,8 +1,8 @@
 import { Card } from "./card";
 import { iJuegoDeCasino } from "./juegosCasino";
-import { playerAction } from "./playerAction";
+import { PlayGame } from "./playgame";
 
-export class Poker extends playerAction implements iJuegoDeCasino{
+export class Poker extends PlayGame implements iJuegoDeCasino{
     private cantDeCartas:number;
     private sumaCartas:number[];
     private pedirCarta:Card;

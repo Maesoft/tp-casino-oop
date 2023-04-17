@@ -1,5 +1,5 @@
-import { Player } from "./player";
 import { PlayGame } from "./playgame";
+import * as ReadlineSync from 'readline-sync'
 
 export class Ruleta extends PlayGame{
     private numbers:number[];
@@ -15,12 +15,11 @@ export class Ruleta extends PlayGame{
             if(i%2===1)this.colors.push("negro");
         }
     }
-    play() {
-        console.log(
-            'Bienvenido al juego de la Ruleta!'
-            
-        );
-        
+    public play(){
+        console.clear();
+        let rl=Number(ReadlineSync.question(`
+        Bienvenido al juego de la Ruleta!
+        ---------------------------------`))        
     }
     getCash() {
         

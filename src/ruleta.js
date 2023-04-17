@@ -17,6 +17,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.Ruleta = void 0;
 var playgame_1 = require("./playgame");
+var ReadlineSync = require("readline-sync");
 var Ruleta = /** @class */ (function (_super) {
     __extends(Ruleta, _super);
     function Ruleta() {
@@ -35,7 +36,8 @@ var Ruleta = /** @class */ (function (_super) {
         return _this;
     }
     Ruleta.prototype.play = function () {
-        console.log('Bienvenido al juego de la Ruleta!');
+        console.clear();
+        var rl = Number(ReadlineSync.question("\n        Bienvenido al juego de la Ruleta!\n        ---------------------------------"));
     };
     Ruleta.prototype.getCash = function () {
     };

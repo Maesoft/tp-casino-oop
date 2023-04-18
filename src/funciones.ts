@@ -22,18 +22,19 @@ export function checkAge():void{
 
 export function starGame():void{
 let rl=Number(ReadlineSync.question(`
-******************************
-*BIENVENIDO AL CASINO VIRTUAL*
-******************************
+********************************
+* BIENVENIDO AL CASINO VIRTUAL *
+********************************
 Seleccione una opcion:
 1) Blackjack
 2) Poker
 3) Ruleta
 4) Tragamonedas Tradicional
 5) Tragamonedas Progresiva
-6) Informacion e Instrucciones
-7) Salir
-`))
+
+9) Salir
+
+Seleccione una opcion: `))
 
 switch (rl) {
     case 1:
@@ -43,6 +44,7 @@ switch (rl) {
 
         break;
     case 3:
+        console.clear();
         ruleta.play();
         break;
     case 4:
@@ -51,10 +53,9 @@ switch (rl) {
     case 5:
         
         break;
-    case 6:
-        
-        break;
-    case 7:
+    case 9:
+        console.clear();
+        console.log("Gracias por venir, vuelva pronto!");
         
         break;
 

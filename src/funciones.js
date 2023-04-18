@@ -24,22 +24,23 @@ function checkAge() {
 }
 exports.checkAge = checkAge;
 function starGame() {
-    var rl = Number(ReadlineSync.question("\n******************************\n*BIENVENIDO AL CASINO VIRTUAL*\n******************************\nSeleccione una opcion:\n1) Blackjack\n2) Poker\n3) Ruleta\n4) Tragamonedas Tradicional\n5) Tragamonedas Progresiva\n6) Informacion e Instrucciones\n7) Salir\n"));
+    var rl = Number(ReadlineSync.question("\n********************************\n* BIENVENIDO AL CASINO VIRTUAL *\n********************************\nSeleccione una opcion:\n1) Blackjack\n2) Poker\n3) Ruleta\n4) Tragamonedas Tradicional\n5) Tragamonedas Progresiva\n\n9) Salir\n\nSeleccione una opcion: "));
     switch (rl) {
         case 1:
             break;
         case 2:
             break;
         case 3:
+            console.clear();
             ruleta.play();
             break;
         case 4:
             break;
         case 5:
             break;
-        case 6:
-            break;
-        case 7:
+        case 9:
+            console.clear();
+            console.log("Gracias por venir, vuelva pronto!");
             break;
         default:
             console.clear();

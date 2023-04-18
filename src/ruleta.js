@@ -16,6 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.Ruleta = void 0;
+var funciones_1 = require("./funciones");
 var playgame_1 = require("./playgame");
 var ReadlineSync = require("readline-sync");
 var Ruleta = /** @class */ (function (_super) {
@@ -35,13 +36,29 @@ var Ruleta = /** @class */ (function (_super) {
         }
         return _this;
     }
+    Ruleta.prototype.girarRuleta = function (numero, pares, impares, rojo, negro, mayores, menores) {
+        var rl = ReadlineSync.question("Desea apostar un pleno?\n       \n       1)Si\n       2)No\n\n       3)Volver al menu principal\n\n\n       Seleccione una opcion: ");
+        return 1;
+    };
     Ruleta.prototype.play = function () {
-        console.clear();
-        var rl = Number(ReadlineSync.question("\n        Bienvenido al juego de la Ruleta!\n        ---------------------------------"));
+        var rl = Number(ReadlineSync.question("\n---------------------------------\nBienvenido al juego de la Ruleta! \n---------------------------------\n                \n1) Realizar apuesta\n2) Instrucciones\n3) Probabilidades\n4) Volver al menu anterior\n\n---------------------------------\n        \nSeleccione una opcion: "));
+        switch (rl) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                console.clear();
+                (0, funciones_1.starGame)();
+                break;
+            default:
+                break;
+        }
     };
     Ruleta.prototype.getCash = function () {
     };
     return Ruleta;
 }(playgame_1.PlayGame));
 exports.Ruleta = Ruleta;
-var ruleta = new Ruleta();

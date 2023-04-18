@@ -5,7 +5,7 @@ export abstract class PlayGame {
         this.premio=0;
     }
 
-    abstract play();
-    abstract getCash();
+    public abstract play():void;
+    public abstract getCash():void;
                                                     
 }

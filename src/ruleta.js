@@ -37,7 +37,7 @@ var Ruleta = /** @class */ (function (_super) {
         return _this;
     }
     Ruleta.prototype.girarRuleta = function (numero, pares, impares, rojo, negro, mayores, menores) {
-        var rl = ReadlineSync.question("Desea apostar un pleno?\n       \n       1)Si\n       2)No\n\n       3)Volver al menu principal\n\n\n       Seleccione una opcion: ");
+        var rl = Number(ReadlineSync.question("Desea apostar un pleno?\n       \n       1)Si\n       2)No\n\n       3)Volver al menu principal\n\n\n       Seleccione una opcion: "));
         return 1;
     };
     Ruleta.prototype.play = function () {

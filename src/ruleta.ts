@@ -17,7 +17,9 @@ export class Ruleta extends PlayGame{
         }
     }
     public girarRuleta(numero:number, pares:boolean, impares:boolean, rojo:boolean, negro:boolean, mayores:boolean, menores:boolean):number{
-       let rl=ReadlineSync.question(`Desea apostar un pleno?
+       let rl=Number(ReadlineSync.question(
+
+      `Desea apostar un pleno?
        
        1)Si
        2)No
@@ -25,7 +27,7 @@ export class Ruleta extends PlayGame{
        3)Volver al menu principal
 
 
-       Seleccione una opcion: `)
+       Seleccione una opcion: `))
 
        return 1;
     }

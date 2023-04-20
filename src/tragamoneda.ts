@@ -1,9 +1,3 @@
-console.log(`
-Tragamonedas
--------------
-🍎🍋🍒🍍🍋
-
-
-
-No hubo coincidencias.`);
-
+export class Tragamonedas{
+    
+}

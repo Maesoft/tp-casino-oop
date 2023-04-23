@@ -1,11 +1,11 @@
 export abstract class PlayGame {
-    protected premio : number;
+    protected creditos : number;
     
     constructor(){
-        this.premio=0;
+        this.creditos=0;
     }
 
-    public abstract play():void;
+    public abstract play(creditos:number):void;
     public abstract getCash():void;
                                                     
 }

@@ -1,0 +1,11 @@
+¡Bienvenido al juego de la ruleta! Para realizar una apuesta, simplemente presiona el botón uno en la pantalla. A continuación, se te presentarán varias opciones de apuesta.
+
+Si deseas apostar por un número específico, deberás elegir la opción "Pleno". Luego se te pedirá que elijas un número del 0 al 36 en el que desees hacer tu apuesta.
+
+Si deseas apostar por si el número que saldrá es par o impar, selecciona la opción correspondiente y presiona 1 si estás de acuerdo con esta apuesta o 2 si no lo estás.
+
+Si deseas apostar por si el número que saldrá será rojo o negro, selecciona la opción correspondiente y presiona 1 si estás de acuerdo con esta apuesta o 2 si no lo estás.
+
+Por último, si deseas apostar por números menores que van del 0 al 18 o mayores del 19 al 36, selecciona la opción correspondiente y realiza tu apuesta.
+
+Recuerda que cada apuesta tiene un pago diferente, por lo que es importante que revises la tabla de pagos, en el apartado de probabilidades, antes de realizar tus apuestas. ¡Disfruta del juego de la ruleta!

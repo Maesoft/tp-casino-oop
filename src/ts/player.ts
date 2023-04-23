@@ -2,6 +2,7 @@ export class Player{
     private name:string;
     private age:number;
     private amount:number;
+
     
     public constructor(nombre:string, edad:number, saldoInicial:number){
         this.name=nombre;

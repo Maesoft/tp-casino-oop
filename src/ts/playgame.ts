@@ -6,6 +6,6 @@ export abstract class PlayGame {
     }
 
     public abstract play(creditos:number):void;
-    public abstract getCash():void;
+    public abstract getCash():number;
                                                     
 }

@@ -3,8 +3,8 @@ import * as ReadlineSync from 'readline-sync';
 import * as fs from 'fs';
 const instrucciones=fs.readFileSync("../txt/instrucciones.txt","utf-8");
 const probabilidades=fs.readFileSync("../txt/probabilidades.txt","utf-8");
-
-
+const mensajeSinCredito:string="No tiene creditos suficientes para jugar. \nPresione 'Enter' para continuar."
+const mensajeOpcioninvalida:string="Ingrese una opcion valida. \nPresione 'Enter' para continuar."
 export class Ruleta extends PlayGame{
     private colors:string[]; 
 
@@ -26,13 +26,7 @@ export class Ruleta extends PlayGame{
             if(i%2===0)this.colors.push("Rojo");
             if(i%2===1)this.colors.push("Negro");
         }
-     this.pleno=-1;
-     this.pares=false; 
-     this.impares=false; 
-     this.rojo=false; 
-     this.negro=false; 
-     this.mayores=false; 
-     this.menores=false;
+     this.resetApuesta();
     }
     
     public play(creditos:number):number{
@@ -47,7 +41,7 @@ Bienvenido al juego de la Ruleta!
 1) Realizar apuesta
 2) Instrucciones
 3) Probabilidades
-4) Volver al menu anterior
+4) Volver al menu principal
 
 ---------------------------------
 Creditos: ${this.creditos}
@@ -58,35 +52,39 @@ Seleccione una opcion: `))
         switch (rl) {
             case 1:
                 console.clear();
-                this.creditos>0? this.apuesta() : console.log("No tiene creditos suficientes para jugar.");
+                this.creditos>0? this.apuesta() : ReadlineSync.question(mensajeSinCredito);
                 break;
             case 2:
                 console.clear()
                 console.log(instrucciones);
-                ReadlineSync.question("Presione una tecla para continuar.");
+                ReadlineSync.question("Presione 'Enter' para continuar.");
                 this.play(this.creditos);
                 break;
             case 3:
                 console.clear();
                 console.log(probabilidades);
-                ReadlineSync.question("Presione una tecla para continuar.")
+                ReadlineSync.question("Presione 'Enter' para continuar.")
                 this.play(this.creditos);
                 break;
             case 4:
                 console.clear();
-                return this.creditos
                 break;
-                
-                default:
-                    break;
+
+            default:
+                ReadlineSync.question(mensajeOpcioninvalida);
+                this.play(this.creditos)
+                break;
             }
         return this.creditos
     }       
-    getCash():number {
+
+    public getCash():number {
     return this.creditos;
     }
+
     public apuesta():void{
         console.clear();
+        this.resetApuesta();
         let rl=Number(ReadlineSync.question(
  
 `Desea apostar un pleno?
@@ -112,9 +110,7 @@ Seleccione una opcion: `))
                     this.creditos--
                 }else{
                     console.clear();
-                    console.log("Ingrese una apuesta valida!");
-                    let rl=ReadlineSync.question("Presione una tecla para continuar.")
-                    console.clear();
+                    ReadlineSync.question(mensajeOpcioninvalida)
                     this.apuesta();
                     return;
                 }
@@ -123,12 +119,11 @@ Seleccione una opcion: `))
                 
                 break
             case 3:
-                console.clear();
-                return
+                this.cancelarApuesta();
                 break
             default:
                 console.clear();
-                console.log("Ingrese una opcion valida");
+                ReadlineSync.question(mensajeOpcioninvalida)
                 this.apuesta();
                 break;
         }
@@ -150,8 +145,7 @@ Seleccione una opcion: `))
                     this.pares=true;
                     this.creditos--
                     }else{
-                        console.log("No tiene creditos suficientes para esta apuesta.");
-                        let rl=ReadlineSync.question("Presione una tecla para continuar.")
+                        ReadlineSync.question(mensajeSinCredito)
                         console.clear();
                         }
                     break;
@@ -159,15 +153,17 @@ Seleccione una opcion: `))
                     
                     break;
                 case 3:
-                    console.clear();
-                    return
-                    break;
+                    this.cancelarApuesta();
+                    return;
             
                 default:
+                    console.clear();
+                    ReadlineSync.question(mensajeOpcioninvalida)
+                    this.apuesta();
                     break;
             }
-            console.clear();
-            rl=Number(ReadlineSync.question(
+        console.clear();
+        rl=Number(ReadlineSync.question(
  
 `Desea apostar a impares?
                      
@@ -185,8 +181,7 @@ Seleccione una opcion: `))
                         this.impares=true;
                         this.creditos--
                         }else{
-                            console.log("No tiene creditos suficientes para esta apuesta.");
-                            let rl=ReadlineSync.question("Presione una tecla para continuar.")
+                            ReadlineSync.question(mensajeSinCredito)
                             console.clear();
                         }
                     break;
@@ -194,15 +189,18 @@ Seleccione una opcion: `))
                     
                     break;
                 case 3:
-                    console.clear();
+                    this.cancelarApuesta();
                     return
                     break;
             
                 default:
+                    console.clear();
+                    ReadlineSync.question(mensajeOpcioninvalida)
+                    this.apuesta();
                     break;
             }
-            console.clear();
-            rl=Number(ReadlineSync.question(
+        console.clear();
+        rl=Number(ReadlineSync.question(
  
 `Desea apostar a rojo?
                       
@@ -220,8 +218,7 @@ Seleccione una opcion: `))
                         this.rojo=true;
                         this.creditos--
                         }else{
-                            console.log("No tiene creditos suficientes para esta apuesta.");
-                            let rl=ReadlineSync.question("Presione una tecla para continuar.")
+                            ReadlineSync.question(mensajeSinCredito)
                             console.clear();
                         }
                      break;
@@ -229,12 +226,14 @@ Seleccione una opcion: `))
                      
                      break;
                  case 3:
-                     console.clear();
+                     this.cancelarApuesta();
                      return
-                     break
              
                  default:
-                     break;
+                    console.clear();
+                    ReadlineSync.question(mensajeOpcioninvalida)
+                    this.apuesta();
+                    break;
              }
              console.clear();
              rl=Number(ReadlineSync.question(
@@ -255,8 +254,7 @@ Seleccione una opcion: `))
                         this.negro=true;
                         this.creditos--
                         }else{
-                            console.log("No tiene creditos suficientes para esta apuesta.")
-                            let rl=ReadlineSync.question("Presione una tecla para continuar.")
+                            ReadlineSync.question(mensajeSinCredito)
                             console.clear();
                         }
                      break;
@@ -264,11 +262,13 @@ Seleccione una opcion: `))
                      
                      break;
                  case 3:
-                     console.clear();
-                     return
-                     break 
-             
+                    this.cancelarApuesta();
+                     return 
+        
                  default:
+                     console.clear();
+                     ReadlineSync.question(mensajeOpcioninvalida)
+                     this.apuesta();
                      break;
              }
              console.clear();
@@ -290,8 +290,7 @@ Seleccione una opcion: `))
                         this.menores=true;
                         this.creditos--
                         }else{
-                             console.log("No tiene creditos suficientes para esta apuesta.");
-                             let rl=ReadlineSync.question("Presione una tecla para continuar.")
+                             ReadlineSync.question(mensajeSinCredito)
                              console.clear();
                         }
                      break;
@@ -299,11 +298,13 @@ Seleccione una opcion: `))
                      
                      break;
                  case 3:
-                     console.clear();
-                     return
-                     break;
+                     this.cancelarApuesta();
+                     return;
              
                  default:
+                     console.clear();
+                     ReadlineSync.question(mensajeOpcioninvalida)
+                     this.apuesta();
                      break;
              }
              console.clear();
@@ -325,8 +326,7 @@ Seleccione una opcion: `))
                         this.mayores=true;
                         this.creditos--
                         }else{
-                            console.log("No tiene creditos suficientes para esta apuesta.");
-                            let rl=ReadlineSync.question("Presione una tecla para continuar.")
+                            ReadlineSync.question(mensajeSinCredito)
                             console.clear();
                         }
                      break;
@@ -334,11 +334,13 @@ Seleccione una opcion: `))
                      
                      break;
                  case 3:
-                     console.clear();
-                     return
-                     break;
+                     this.cancelarApuesta();
+                     return;
              
                  default:
+                     console.clear();
+                     ReadlineSync.question(mensajeOpcioninvalida)
+                     this.apuesta();
                      break;
              }
              console.clear();
@@ -357,7 +359,7 @@ Seleccione una opcion: `))
         ¡El numero ganador es el ${nroGanador}! ${colorGanador}, ${parImpar}, ${menorMayor}
         
         `);
-        let rl=ReadlineSync.question("Presione una tecla para continuar.")
+        let rl=ReadlineSync.question("Presione 'Enter' para continuar.")
         console.clear();
         if(nroGanador===this.pleno){
             premio+=36;
@@ -388,14 +390,14 @@ Seleccione una opcion: `))
             console.log("Felicidades gano 2 creditos, acerto al Mayor!");
         }
         if(premio>0){
-            console.log(`Usted gano en esta jugada ${premio}`);
+            console.log(`Usted gano en esta jugada ${premio} creaditos.`);
             this.creditos+=premio;   
         }else{
             console.log(`No tuvo suerte, no pudo acertar ninguna apuesta.
             
             `);
         }
-        rl=ReadlineSync.question("Presione una tecla para continuar.")
+        ReadlineSync.question("Presione 'Enter' para continuar.")
         console.clear();
         this.resetApuesta();
      }
@@ -407,5 +409,17 @@ Seleccione una opcion: `))
              this.negro=false; 
              this.mayores=false; 
              this.menores=false;
+     }
+     private cancelarApuesta(){
+        if(this.pleno>-1)this.creditos++
+        if(this.pares)this.creditos++
+        if(this.impares)this.creditos++
+        if(this.rojo)this.creditos++
+        if(this.negro)this.creditos++
+        if(this.menores)this.creditos++
+        if(this.mayores)this.creditos++
+        console.clear();
+        this.resetApuesta();
+        this.play(this.creditos);
      }
 }

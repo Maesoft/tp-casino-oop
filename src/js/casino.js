@@ -7,6 +7,8 @@ var poker_1 = require("./poker");
 var tragamoneda_1 = require("./tragamoneda");
 var tragamonedaspro_1 = require("./tragamonedaspro");
 var blackjack_1 = require("./blackjack");
+var mensajeSinCredito = "No tiene creditos suficientes para jugar. \nPresione 'Enter' para continuar.";
+var mensajeOpcioninvalida = "Ingrese una opcion valida. \nPresione 'Enter' para continuar.";
 var Casino = /** @class */ (function () {
     function Casino(player) {
         this.nombre = "Casino Virtual Las Flores";
@@ -24,7 +26,7 @@ var Casino = /** @class */ (function () {
                 this.menu();
             }
             else {
-                console.log("No tiene creditos suficientes para jugar.");
+                console.log(mensajeSinCredito);
             }
         }
         else {
@@ -41,10 +43,10 @@ var Casino = /** @class */ (function () {
             case 2:
                 break;
             case 3:
-                console.clear();
                 this.jugarRuleta();
                 break;
             case 4:
+                this.jugarTragamoneda();
                 break;
             case 5:
                 break;
@@ -54,12 +56,31 @@ var Casino = /** @class */ (function () {
                 break;
             default:
                 console.clear();
-                console.log("Intruduzca una opcion valida.");
+                console.log(mensajeOpcioninvalida);
+                this.menu();
                 break;
         }
     };
     Casino.prototype.jugarRuleta = function () {
-        this.player.getAmount() > 0 ? this.player.setAmount(this.ruleta.play(this.player.getAmount())) : console.log("No tiene creditos suficientes para jugar.");
+        console.clear();
+        if (this.player.getAmount() > 0) {
+            this.ruleta.play(this.player.getAmount());
+            this.player.setAmount(this.ruleta.getCash());
+        }
+        else {
+            console.log(mensajeSinCredito);
+        }
+        this.menu();
+    };
+    Casino.prototype.jugarTragamoneda = function () {
+        console.clear();
+        if (this.player.getAmount() > 0) {
+            this.tragamonedas.play(this.player.getAmount());
+            this.player.setAmount(this.tragamonedas.getCash());
+        }
+        else {
+            console.log(mensajeSinCredito);
+        }
         this.menu();
     };
     Casino.prototype.getNombre = function () {

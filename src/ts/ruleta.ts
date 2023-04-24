@@ -1,8 +1,8 @@
 import { PlayGame } from "./playgame";
 import * as ReadlineSync from 'readline-sync';
 import * as fs from 'fs';
-const instrucciones=fs.readFileSync("../txt/instrucciones.txt","utf-8");
-const probabilidades=fs.readFileSync("../txt/probabilidades.txt","utf-8");
+const instrucciones=fs.readFileSync("../txt/instruccionesRuleta.txt","utf-8");
+const probabilidades=fs.readFileSync("../txt/probabilidadesRuleta.txt","utf-8");
 const mensajeSinCredito:string="No tiene creditos suficientes para jugar. \nPresione 'Enter' para continuar."
 const mensajeOpcioninvalida:string="Ingrese una opcion valida. \nPresione 'Enter' para continuar."
 export class Ruleta extends PlayGame{

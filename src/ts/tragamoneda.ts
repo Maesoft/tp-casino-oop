@@ -2,17 +2,18 @@ import { PlayGame } from "./playgame";
 import * as ReadlineSync from 'readline-sync';
 import * as fs from 'fs';
 
+const probabilidades=fs.readFileSync("../txt/slot.txt","utf-8");
 const mensajeSinCredito:string="No tiene creditos suficientes para jugar. \nPresione 'Enter' para continuar."
 const mensajeOpcioninvalida:string="Ingrese una opcion valida. \nPresione 'Enter' para continuar."
 
 export class Tragamonedas extends PlayGame{
     
-    private cantRodillos:number;
-    private elementosRodillo:string[];
-    public constructor(){
+    protected cantRodillos:number;
+    protected elementosRodillo:string[];
+    public constructor(cantRodillos:number, elementosRodillo:string[]){
         super();
-        this.cantRodillos=3;
-        this.elementosRodillo=["🍒","🔔","🃏","🎲","💰","🍊","👻"];
+        this.cantRodillos=cantRodillos;
+        this.elementosRodillo=elementosRodillo;
     }
     public play(creditos: number): void {
         this.creditos=creditos;
@@ -37,13 +38,19 @@ const rl=Number(ReadlineSync.question("Seleccione una opcion: "))
                 this.creditos>0? this.tirarPalanca() : ReadlineSync.question(mensajeSinCredito);
                 break;
             case 2:
-                
+                console.clear()
+                console.log(probabilidades);
+                ReadlineSync.question("Presione 'Enter' para continuar.");
+                this.play(this.creditos)
                 break;
             case 3:
                 console.clear();
                 break;
         
             default:
+                ReadlineSync.question(mensajeOpcioninvalida);
+                this.play(this.creditos)
+                break;
                 break;
         }
 }
@@ -68,12 +75,12 @@ const rl=Number(ReadlineSync.question("Seleccione una opcion: "))
         | ${resultado.join(" | ")} | //
         ****************//
         |______________|`);
-        premio=this.comprobarPremio(resultado, this.cantRodillos);
+        premio=this.comprobarPremio(resultado);
         this.creditos+=premio;
         ReadlineSync.question("Presione 'Enter' para continuar.")
         this.play(this.creditos);
        }
-    public comprobarPremio(array:string[], cantRodillos:number):number{
+    public comprobarPremio(array:string[]):number{
         let premio=0;
         if(array[0]===array[1]&&array[1]===array[2]&&array[2]===array[3]&&array[3]===array[4]&&array[4]===array[5]){
             premio=15000

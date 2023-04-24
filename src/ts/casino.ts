@@ -24,8 +24,8 @@ export class Casino{
         this.ruleta=new Ruleta();
         this.blackjack=new Blackjack();
         this.poker=new Poker()
-        this.tragamonedas=new Tragamonedas();
-        this.tragamonedasPro=new TragamonedasPro();
+        this.tragamonedas=new Tragamonedas(3,["🍒","🍍","🍊","🍋","🍌","🍉"]);
+        this.tragamonedasPro=new TragamonedasPro(5,["🍀","🎲","🃏","🎁","👻","💰"]);
         this.player=player;
     }
 
@@ -78,7 +78,7 @@ let rl=Number(ReadlineSync.question(`Seleccione una opcion: `))
                 this.jugarTragamoneda();
                 break;
             case 5:
-                
+                this.jugarTragamonedaPro();
                 break;
             case 9:
                 console.clear();
@@ -111,6 +111,17 @@ let rl=Number(ReadlineSync.question(`Seleccione una opcion: `))
         if(this.player.getAmount()>0){
             this.tragamonedas.play(this.player.getAmount());
             this.player.setAmount(this.tragamonedas.getCash());
+        }else{
+            console.log(mensajeSinCredito)
+        }
+        this.menu();
+    }
+    public jugarTragamonedaPro():void{
+    
+        console.clear();
+        if(this.player.getAmount()>3){
+            this.tragamonedasPro.play(this.player.getAmount());
+            this.player.setAmount(this.tragamonedasPro.getCash());
         }else{
             console.log(mensajeSinCredito)
         }

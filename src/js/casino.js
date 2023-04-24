@@ -15,8 +15,8 @@ var Casino = /** @class */ (function () {
         this.ruleta = new ruleta_1.Ruleta();
         this.blackjack = new blackjack_1.Blackjack();
         this.poker = new poker_1.Poker();
-        this.tragamonedas = new tragamoneda_1.Tragamonedas();
-        this.tragamonedasPro = new tragamonedaspro_1.TragamonedasPro();
+        this.tragamonedas = new tragamoneda_1.Tragamonedas(3, ["🍒", "🍍", "🍊", "🍋", "🍌", "🍉"]);
+        this.tragamonedasPro = new tragamonedaspro_1.TragamonedasPro(5, ["🍀", "🎲", "🃏", "🎁", "👻", "💰"]);
         this.player = player;
     }
     Casino.prototype.newGame = function () {
@@ -49,6 +49,7 @@ var Casino = /** @class */ (function () {
                 this.jugarTragamoneda();
                 break;
             case 5:
+                this.jugarTragamonedaPro();
                 break;
             case 9:
                 console.clear();
@@ -77,6 +78,17 @@ var Casino = /** @class */ (function () {
         if (this.player.getAmount() > 0) {
             this.tragamonedas.play(this.player.getAmount());
             this.player.setAmount(this.tragamonedas.getCash());
+        }
+        else {
+            console.log(mensajeSinCredito);
+        }
+        this.menu();
+    };
+    Casino.prototype.jugarTragamonedaPro = function () {
+        console.clear();
+        if (this.player.getAmount() > 3) {
+            this.tragamonedasPro.play(this.player.getAmount());
+            this.player.setAmount(this.tragamonedasPro.getCash());
         }
         else {
             console.log(mensajeSinCredito);

@@ -18,14 +18,16 @@ exports.__esModule = true;
 exports.Tragamonedas = void 0;
 var playgame_1 = require("./playgame");
 var ReadlineSync = require("readline-sync");
+var fs = require("fs");
+var probabilidades = fs.readFileSync("../txt/slot.txt", "utf-8");
 var mensajeSinCredito = "No tiene creditos suficientes para jugar. \nPresione 'Enter' para continuar.";
 var mensajeOpcioninvalida = "Ingrese una opcion valida. \nPresione 'Enter' para continuar.";
 var Tragamonedas = /** @class */ (function (_super) {
     __extends(Tragamonedas, _super);
-    function Tragamonedas() {
+    function Tragamonedas(cantRodillos, elementosRodillo) {
         var _this = _super.call(this) || this;
-        _this.cantRodillos = 3;
-        _this.elementosRodillo = ["🍒", "🔔", "🃏", "🎲", "💰", "🍊", "👻"];
+        _this.cantRodillos = cantRodillos;
+        _this.elementosRodillo = elementosRodillo;
         return _this;
     }
     Tragamonedas.prototype.play = function (creditos) {
@@ -38,11 +40,18 @@ var Tragamonedas = /** @class */ (function (_super) {
                 this.creditos > 0 ? this.tirarPalanca() : ReadlineSync.question(mensajeSinCredito);
                 break;
             case 2:
+                console.clear();
+                console.log(probabilidades);
+                ReadlineSync.question("Presione 'Enter' para continuar.");
+                this.play(this.creditos);
                 break;
             case 3:
                 console.clear();
                 break;
             default:
+                ReadlineSync.question(mensajeOpcioninvalida);
+                this.play(this.creditos);
+                break;
                 break;
         }
     };
@@ -60,12 +69,12 @@ var Tragamonedas = /** @class */ (function (_super) {
             resultado.push(this.elementosRodillo[aleatorio]);
         }
         console.log("\n        ________________\n        |Slot  GOODLUCK|\n        ****************  @\n        | ".concat(resultado.join(" | "), " | //\n        ****************//\n        |______________|"));
-        premio = this.comprobarPremio(resultado, this.cantRodillos);
+        premio = this.comprobarPremio(resultado);
         this.creditos += premio;
         ReadlineSync.question("Presione 'Enter' para continuar.");
         this.play(this.creditos);
     };
-    Tragamonedas.prototype.comprobarPremio = function (array, cantRodillos) {
+    Tragamonedas.prototype.comprobarPremio = function (array) {
         var premio = 0;
         if (array[0] === array[1] && array[1] === array[2] && array[2] === array[3] && array[3] === array[4] && array[4] === array[5]) {
             premio = 15000;

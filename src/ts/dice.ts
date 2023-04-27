@@ -67,7 +67,7 @@ export class Dice extends PlayGame {
   }
 
   private playDice(): void {
-    /* console.log(`Bienvenido al juego de Casino, ${Player.name}!`); */
+    console.log(`Bienvenido al juego de Casino, ${Player.name}!`);
 
     let isPlaying = true;
     while (isPlaying) {

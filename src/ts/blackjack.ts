@@ -145,20 +145,17 @@ function buildGame(): void {
 
   if ((yourAceCount || yourSum) > 21) {
     console.log("Pierdes.");
-  }
-
-  if (yourSum == 21) {
+  } else if (yourSum == 21) {
     console.log("Felicidades, Ganaste");
-  }
-
-  if (yourSum < 17) {
-    return console.log("Te recomiendo pedir otra carta...");
+  } else if (yourSum < 17) {
+    console.log("Te recomiendo pedir otra carta...");
   } else {
     if (yourSum >= 17 && yourSum < dealerSum) {
-      return console.log("Detente! No lo hagas Goku!");
-    }
-    if (yourSum > dealerSum && yourSum <= 21) {
-      return console.log("Tu ganas!");
+      console.log("Detente! No lo hagas Goku!");
+    } else if (yourSum > dealerSum && yourSum <= 21) {
+      console.log("Tu ganas!");
+    } else {
+      console.log("El dealer pierde, ¡tu ganas!");
     }
   }
 }
@@ -246,7 +243,6 @@ function playBlackJack() {
                 break;
               } else if (yourSum === 21) {
                 console.log("Felicidades, Ganaste!.");
-                break;
               }
               break;
             case "No":
@@ -286,3 +282,5 @@ function playBlackJack() {
     }
   }
 }
+
+playBlackJack();

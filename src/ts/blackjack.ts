@@ -70,7 +70,7 @@ let dealerSum = 0;
 let deck;
 let popCard;
 let Instrucciones =
-  "Al jugar se te otorgan 2 cartas las cuales cuentan con un valor, si se encuentran entre el 1 y el 10 tienen el mismo valor que el numero de la carta, luego estan las K, Q y J que tienen el valor de 10 y por ultimo el Az que tiene el valor de 11, el fin del juego es llegar al valor de 21 o quedar mas cerca que el contrincante, si te pasas pierdes. Suerte! y que disfrutes del Juego!";
+  "Al jugar se te otorgan 2 cartas las cuales cuentan con un valor, \n si se encuentran entre el 1 y el 10 tienen el mismo valor que el numero de la carta, \n luego estan las K, Q y J que tienen el valor de 10 y por ultimo el Az que tiene el valor de 11,\n el fin del juego es llegar al valor de 21 o quedar mas cerca que el contrincante, \nsi te pasas pierdes. Suerte! y que disfrutes del Juego!";
 
 /* Crea el Mazo */
 
@@ -117,7 +117,7 @@ function buildGame(): void {
   popCard = deck.pop();
   dealerSum += getValue(popCard);
   dealerAceCount += checkAce(popCard);
-  console.log("El dealer suma la carta: " + popCard + "\n");
+  console.log("El dealer suma la carta: " + popCard);
   console.log("La suma del Dealer es de: " + dealerSum);
   while (dealerSum < 17) {
     let card = deck.pop();
@@ -128,11 +128,11 @@ function buildGame(): void {
   }
 
   if (dealerSum > 21) {
-    console.log("El Dealer pierde!");
+    console.log("El Dealer pierde!" + "\n");
   }
 
   if (dealerSum == 21) {
-    console.log("F#!$, el Dealer gana");
+    console.log("F#!$, el Dealer gana" + "\n");
   }
 
   for (let i = 0; i < 2; i++) {
@@ -144,18 +144,18 @@ function buildGame(): void {
   }
 
   if ((yourAceCount || yourSum) > 21) {
-    console.log("Pierdes.");
+    console.log("Pierdes." + "\n");
   } else if (yourSum == 21) {
-    console.log("Felicidades, Ganaste");
+    console.log("Felicidades, Ganaste" + "\n");
   } else if (yourSum < 17) {
-    console.log("Te recomiendo pedir otra carta...");
+    console.log("Te recomiendo pedir otra carta..." + "\n");
   } else {
     if (yourSum >= 17 && yourSum < dealerSum) {
-      console.log("Detente! No lo hagas Goku!");
+      console.log("Detente! No lo hagas Goku!" + "\n");
     } else if (yourSum > dealerSum && yourSum <= 21) {
-      console.log("Tu ganas!");
+      console.log("Tu ganas!" + "\n");
     } else {
-      console.log("El dealer pierde, ¡tu ganas!");
+      console.log("El dealer pierde, ¡tu ganas!" + "\n");
     }
   }
 }
@@ -196,6 +196,7 @@ function checkAce(card) {
 /* Agregar una carta adicional a la mano del jugador siempre que su puntaje sea menor a 17.  */
 
 function hit() {
+  console.clear();
   buildDeck();
   shuffleDeck();
   if (yourSum < 17) {
@@ -221,6 +222,7 @@ function resetGame() {
 /* Crea la interface para jugar */
 
 function playBlackJack() {
+  console.clear();
   while (true) {
     buildGame();
     switch (true) {
@@ -282,5 +284,3 @@ function playBlackJack() {
     }
   }
 }
-
-playBlackJack();

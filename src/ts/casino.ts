@@ -65,7 +65,7 @@ export class Casino {
 ********************************
 Seleccione una opcion:
 1) Blackjack 
-2) Poker 
+2) Dados 
 3) Ruleta 
 4) Tragamonedas Tradicional 
 5) Tragamonedas Progresiva  

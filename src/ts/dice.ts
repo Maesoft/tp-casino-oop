@@ -38,7 +38,9 @@ export class Dice extends PlayGame {
         break;
       case 2:
         console.clear();
-        console.log("Instrucciones");
+        console.log(
+          "El objetivo del juego es apostar por el resultado de dos dados.\n\nSi el lanzamiento de salida es 7 o 11, el jugador gana automáticamente.\n\nSi el lanzamiento de salida es 2, 3 o 12, el jugador pierde automáticamente.\n\nSi el lanzamiento de salida es cualquier otro número (4, 5, 6, 8, 9, o 10)\n, ese número se convierte en el 'punto' del jugador. El objetivo del jugador es ahora volver a tirar los dados y conseguir el mismo número antes de sacar un 7.\n\nSi el jugador saca un 7 antes de conseguir su punto, pierde.\n\nSi el jugador consigue su punto antes de sacar un 7, gana."
+        );
         ReadlineSync.question("Presione una tecla para continuar.");
         this.play(this.creditos);
         break;
@@ -67,8 +69,6 @@ export class Dice extends PlayGame {
   }
 
   private playDice(): void {
-    console.log(`Bienvenido al juego de Casino, ${Player.name}!`);
-
     let isPlaying = true;
     while (isPlaying) {
       const choice = ReadlineSync.question(
@@ -104,7 +104,7 @@ export class Dice extends PlayGame {
               this.point = null;
             } else {
               console.log(
-                `Sumaste ${sum}, sigue tirando hasta que aciertes ${this.point} or roll a 7.`
+                `Sumaste ${sum}, sigue tirando hasta que aciertes o caiga un 7.`
               );
             }
           }

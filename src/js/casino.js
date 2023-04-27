@@ -2,21 +2,35 @@
 exports.__esModule = true;
 exports.Casino = void 0;
 var ReadlineSync = require("readline-sync");
-var ruleta_1 = require("./ruleta");
-var poker_1 = require("./poker");
-var tragamoneda_1 = require("./tragamoneda");
-var tragamonedaspro_1 = require("./tragamonedaspro");
-var blackjack_1 = require("./blackjack");
+var ruleta_1 = require("../ts/ruleta");
+var dice_1 = require("../ts/dice");
+var tragamoneda_1 = require("../ts/tragamoneda");
+var tragamonedaspro_1 = require("../ts/tragamonedaspro");
+var blackjack_1 = require("../ts/blackjack");
 var mensajeSinCredito = "No tiene creditos suficientes para jugar. \nPresione 'Enter' para continuar.";
 var mensajeOpcioninvalida = "Ingrese una opcion valida. \nPresione 'Enter' para continuar.";
 var Casino = /** @class */ (function () {
     function Casino(player) {
         this.nombre = "Casino Virtual Las Flores";
         this.ruleta = new ruleta_1.Ruleta();
-        this.blackjack = new blackjack_1.Blackjack();
-        this.poker = new poker_1.Poker();
-        this.tragamonedas = new tragamoneda_1.Tragamonedas(3, ["🍒", "🍍", "🍊", "🍋", "🍌", "🍉"]);
-        this.tragamonedasPro = new tragamonedaspro_1.TragamonedasPro(5, ["🍀", "🎲", "🃏", "🎁", "👻", "💰"]);
+        this.blackjack = new blackjack_1.BlackJack();
+        this.dice = new dice_1.Dice();
+        this.tragamonedas = new tragamoneda_1.Tragamonedas(3, [
+            "🍒",
+            "🍍",
+            "🍊",
+            "🍋",
+            "🍌",
+            "🍉",
+        ]);
+        this.tragamonedasPro = new tragamonedaspro_1.TragamonedasPro(5, [
+            "🍀",
+            "🎲",
+            "🃏",
+            "🎁",
+            "👻",
+            "💰",
+        ]);
         this.player = player;
     }
     Casino.prototype.newGame = function () {
@@ -39,8 +53,10 @@ var Casino = /** @class */ (function () {
         var rl = Number(ReadlineSync.question("Seleccione una opcion: "));
         switch (rl) {
             case 1:
+                this.jugarBlackJack();
                 break;
             case 2:
+                this.jugarDice();
                 break;
             case 3:
                 this.jugarRuleta();
@@ -61,6 +77,28 @@ var Casino = /** @class */ (function () {
                 this.menu();
                 break;
         }
+    };
+    Casino.prototype.jugarDice = function () {
+        console.clear();
+        if (this.player.getAmount() > 0) {
+            this.dice.play(this.player.getAmount());
+            this.player.setAmount(this.dice.getCash());
+        }
+        else {
+            console.log(mensajeSinCredito);
+        }
+        this.menu();
+    };
+    Casino.prototype.jugarBlackJack = function () {
+        console.clear();
+        if (this.player.getAmount() > 0) {
+            this.blackjack.play(this.player.getAmount());
+            this.player.setAmount(this.blackjack.getCash());
+        }
+        else {
+            console.log(mensajeSinCredito);
+        }
+        this.menu();
     };
     Casino.prototype.jugarRuleta = function () {
         console.clear();

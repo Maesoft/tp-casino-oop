@@ -14,19 +14,8 @@ export class BlackJack extends PlayGame {
   buildGame(): void {}
   playBlackJack(): void {}
 
-  public constructor(
-    creditos: number,
-    dealerSum: number,
-    yourSum: number,
-    dealerAceCount: number,
-    yourAceCount: number
-  ) {
+  public constructor() {
     super();
-    this.dealerAceCount = dealerAceCount;
-    this.dealerSum = dealerSum;
-    this.yourAceCount = yourAceCount;
-    this.yourSum = yourSum;
-    this.creditos = creditos;
   }
 
   public play(creditos: number): number {
@@ -297,4 +286,3 @@ function playBlackJack() {
     }
   }
 }
-playBlackJack();
